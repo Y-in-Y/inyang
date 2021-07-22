@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:09:50 by inyang            #+#    #+#             */
-/*   Updated: 2021/07/22 00:54:07 by inyang           ###   ########.fr       */
+/*   Updated: 2021/07/22 16:40:55 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,4 +52,5 @@ char			*ft_strdup(const char *src);
 t_list	*make_next_flag_list(t_all *a);
 void		check_arguments(t_all *a);
 void		is_cmd_echo(t_all *a);
+void		is_there_env(t_all *a);
 #endif

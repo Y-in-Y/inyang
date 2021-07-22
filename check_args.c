@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 16:17:22 by inyang            #+#    #+#             */
-/*   Updated: 2021/07/22 01:00:51 by inyang           ###   ########.fr       */
+/*   Updated: 2021/07/23 02:06:34 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -114,6 +114,20 @@ char			**split_args(int *int_line, char *s, int c)
 	return (all);
 }
 
+// void		is_there_env(t_all *a)
+// {
+// 	int		i;
+// 	t_all	*b;
+
+// 	b = a;
+// 	i = -1;
+// 	while (b->arg[++i])
+// 	{
+// 		if ((b->arg[i][0] == '$')
+// 		{
+			
+// }
+
 char		*change_arg(char *s1, char *s2)
 {
 	int		i;
@@ -154,7 +168,6 @@ void		is_cmd_echo(t_all *a)
 {
 	t_all	*b;
 	int		echo_here;
-	char	*new_arg;
 	char	*tmp;
 	int		i;
 	int		j;
@@ -190,8 +203,8 @@ void		is_cmd_echo(t_all *a)
 					printf("%d %d\n", j, px_strlen(b->arg[i + k]));
 					if (j == px_strlen(b->arg[i + k]))
 					{
-						new_arg = change_arg(b->arg[i + k], "-n");
-						tmp = new_arg;
+						tmp = change_arg(b->arg[i + k], "-n");
+						// tmp = new_arg;
 						printf("tmp %s\n", tmp);
 						free(b->arg[i + k]);
 						b->arg[i + k] = tmp;
@@ -204,7 +217,7 @@ void		is_cmd_echo(t_all *a)
 			}
 			else
 			{
-				if (b->arg[i + k] && px_strcmp(b->arg[i + k], "-n"))
+				if (b->arg[i + 1] && px_strcmp(b->arg[i + 1], "-n"))
 					b->echo_n_cnt = 1;
 			}
 		}

@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:11:14 by inyang            #+#    #+#             */
-/*   Updated: 2021/07/22 00:59:18 by inyang           ###   ########.fr       */
+/*   Updated: 2021/07/22 16:40:15 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,6 +219,7 @@ void	parsing(char *line, t_all *a)
 	changed_line_cut(line, changed, a);
 	check_arguments(a);
 	is_cmd_echo(a);
+	// is_there_env(a);
 }
 
 int	main(int argc, char **argv, char **envp)
