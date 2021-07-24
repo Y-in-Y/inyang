@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:11:14 by inyang            #+#    #+#             */
-/*   Updated: 2021/07/22 16:40:15 by inyang           ###   ########.fr       */
+/*   Updated: 2021/07/24 22:52:00 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -219,6 +219,7 @@ void	parsing(char *line, t_all *a)
 	changed_line_cut(line, changed, a);
 	check_arguments(a);
 	is_cmd_echo(a);
+	is_there_quote(a);
 	// is_there_env(a);
 }
 
@@ -254,10 +255,10 @@ int	main(int argc, char **argv, char **envp)
 	// line = "< main.c echo test";
 	// parsing(line, &a);
 	printf("test6\n");
-	line = "eCho -nnnnnnnnnn -n -n -n ";
+	line = "echo";
 	parsing(line, &a);
-	// printf("test4\n");
-	// line = "echo \'$PWD is here";
-	// parsing(line);
+	printf("test7\n");
+	line = "< in ecHo << cat -n -nnn -n a >> out";
+	parsing(line, &a);
 	return (0);
 }

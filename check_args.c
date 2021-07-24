@@ -6,112 +6,77 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 16:17:22 by inyang            #+#    #+#             */
-/*   Updated: 2021/07/23 02:06:34 by inyang           ###   ########.fr       */
+/*   Updated: 2021/07/24 22:53:56 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-static size_t	ft_cnt(int *s, int c, int strlen)
+char	*ft_substr(char *s, unsigned int start, size_t len)
 {
-	size_t	cnt;
-	int		*tmp;
-	int		i;
+	size_t		i;
+	size_t		s_len;
+	char		*str;
 
-	cnt = 0;
-	tmp = s;
-	i = 0;
-	while (i < strlen)
+	if (s == 0)
+		return (0);
+	s_len =	px_strlen(s);
+	if (start > s_len)
 	{
-		if (tmp[i] == c)
+		if (!(str = (char *)malloc(sizeof(char) * 1)))
+			return (0);
+		str[0] = '\0';
+		return (str);
+	}
+	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
+		return (0);
+	i = 0;
+	while (i < len)
+	{
+		str[i] = s[i + start];
+		i++;
+	}
+	str[i] = '\0';
+	return (str);
+}
+
+void	is_there_quote(t_all *a)
+{
+	int		i;
+	int		j;
+	int		q_start;
+	t_all	*b;
+	char	*tmp;
+
+	printf(">>>>>hi there\n");
+	q_start = -1;
+	b = a;
+	i = 0;
+	while (b->arg[i])
+	{
+		j = 0;
+		while (b->arg[i][j])
+		{
+			printf("%d %c\n", i,b->arg[i][j]);
+			j++;
+			if (b->arg[i][j] == '\'' || b->arg[i][j] == '\"') // <<계속 체크하면서 싱글 더블 확인
+			{
+				q_start = j;
+				printf(">>>>>>>>> %d\n", q_start);
+				while (b->arg[i][j] == 42 || b->arg[i][j] == 47)
+					j++;
+			}
+		}
+		printf("%d, %d\n", j, q_start);
+		if (q_start == -1)
 			i++;
 		else
 		{
-			while (i < strlen && tmp[i] != c)
-				i++;
-			cnt++;
-		}
-	}
-	return (cnt);
-}
-
-static int		ft_n_malloc(char **all, size_t k, size_t cnt)
-{
-	if (!(all[k] = malloc(sizeof(char) * (cnt + 1))))
-	{
-		while (k > 0)
-		{
-			k--;
-			free(all[k]);
-		}
-		free(all);
-		return (1);
-	}
-	return (0);
-}
-
-static size_t	ft_index(size_t i, int *s, int c, int strlen)
-{
-	size_t	cnt;
-
-	cnt = 0;
-	while ((int)i < strlen && s[i] != c)
-	{
-		i++;
-		cnt++;
-	}
-	return (cnt);
-}
-
-static int		ft_fill(int *int_line, char const *s, int c, char **all, int strlen)
-{
-	size_t	i;
-	size_t	j;
-	size_t	k;
-	size_t	l;
-	size_t	cnt;
-
-	i = 0;
-	k = 0;
-	/* 무슨 문장 들어왔나 체크용 */
-	printf("command line : %s\n",s);
-	/* 여기까지 */
-	while ((int)i < strlen)
-	{
-		while ((int)i < strlen && int_line[i] == c)
+			tmp = ft_substr(b->arg[i], q_start, (j - q_start));
+			printf("따옴표 잘린 버전 %s\n", tmp);
 			i++;
-		if (i >= strlen)
-			break ;
-		cnt = ft_index(i, int_line, c, strlen);
-		i += cnt;
-		if (ft_n_malloc(all, k, cnt))
-			return (1);
-		l = 0;
-		j = i - cnt;
-		while (j < i)
-			all[k][l++] = (char)s[j++];
-		all[k++][l] = '\0';
+		}
 	}
-	return (0);
-}
-
-char			**split_args(int *int_line, char *s, int c)
-{
-	size_t	len;
-	char	**all;
-	int		strlen;
-
-	if (!s)
-		return (NULL);
-	strlen = px_strlen(s);
-	len = ft_cnt(int_line, c, strlen);
-	if (!(all = malloc(sizeof(char *) * (len + 1))))
-		return (NULL);
-	int check;
-	if ((check = ft_fill(int_line, s, c, all, strlen)) != 0)
-		return (NULL);
-	all[len] = NULL;
-	return (all);
 }
 
 // void		is_there_env(t_all *a)
@@ -174,10 +139,9 @@ void		is_cmd_echo(t_all *a)
 	int		k;
 
 	b = a;
-	tmp = b->arg[1];
 	if (b->cmd == NULL)
 		return ;
-	printf("b->cmd %s\n", b->cmd);
+	tmp = b->arg[1];
 	b->echo_n_cnt = 0;
 	i = -1;
 	while (b->arg[++i])
@@ -192,7 +156,7 @@ void		is_cmd_echo(t_all *a)
 				k = 1;
 				while (b->arg[i + k] && b->arg[i + k][0] == '-' && b->arg[i + k][1] == 'n')
 				{
-					j = i + 2;
+					j = 2;
 					while (b->arg[i + k])
 					{
 						if (b->arg[i + k][j] == 'n')
@@ -262,6 +226,7 @@ void		check_arguments(t_all *a)
 					b->redir_list->redir_flag = 2;
 				}
 				b->redir_list->file = ft_strdup(&b->arg[i][j]);
+				b->arg[i][0] = '\0';
 			}
 			else if (b->arg[i][j] == '<')
 			{
@@ -276,13 +241,14 @@ void		check_arguments(t_all *a)
 					b->redir_list->redir_flag = 1;
 				}
 				b->redir_list->file = ft_strdup(&b->arg[i][j]);
+				b->arg[i][0] = '\0';
 			}
 			else
 			{
 				if (i == 0)
-					b->cmd = b->arg[0];
+					b->cmd = ft_strdup(b->arg[0]);
 				else if (i > 0 && b->cmd == NULL)
-					b->cmd = b->arg[i];
+					b->cmd = ft_strdup(b->arg[i]);
 			}
 		}
 		b->redir_list = head;
@@ -301,7 +267,9 @@ void		check_arguments(t_all *a)
 			}
 			k++;
 		}
+		b->redir_list = head;
 		/* 여기까지 지우기 */
+		rearrange_arg(b);
 		b = b->next;
 	}
 	printf("\n\n");
