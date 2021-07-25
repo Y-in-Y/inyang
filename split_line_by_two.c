@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_int_by_two.c                                 :+:      :+:    :+:   */
+/*   split_int_line_by_two.c                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 16:05:59 by inyang            #+#    #+#             */
-/*   Updated: 2021/07/24 16:06:28 by inyang           ###   ########.fr       */
+/*   Updated: 2021/07/26 02:30:21 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,6 +100,7 @@ char			**split_args(int *int_line, char *s, int c)
 	size_t	len;
 	char	**all;
 	int		strlen;
+	int		check;
 
 	if (!s)
 		return (NULL);
@@ -107,7 +108,6 @@ char			**split_args(int *int_line, char *s, int c)
 	len = ft_cnt(int_line, c, strlen);
 	if (!(all = malloc(sizeof(char *) * (len + 1))))
 		return (NULL);
-	int check;
 	if ((check = ft_fill(int_line, s, c, all, strlen)) != 0)
 		return (NULL);
 	all[len] = NULL;

@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 16:17:22 by inyang            #+#    #+#             */
-/*   Updated: 2021/07/26 01:52:37 by inyang           ###   ########.fr       */
+/*   Updated: 2021/07/26 03:33:32 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,45 +43,29 @@ char	*ft_substr(char *s, unsigned int start, size_t len)
 void	is_there_quote(t_all *a)
 {
 	int		i;
-	int		j;
-	int		q_start;
 	t_all	*b;
 	char	*tmp;
+	int		*tmp_int;
+	int		strlen;
 
 	b = a;
 	i = 0;
 	while (b->arg[i])
 	{
-		q_start = -1;
-		j = 0;
-		while (b->arg[i][j])
-		{
-			if (b->arg[i][j] == '\'' || b->arg[i][j] == '\"') // <<계속 체크하면서 싱글 더블 확인
-			{
-				q_start = j;
-				break ;
-			}
-			j++;
-		}
-		while (b->arg[i][j])
-		{
-			if (b->arg[i][j] == '\0')
-				printf("quote not closed\n");
-			if (b->arg[i][j + 1] == '\'' || b->arg[i][j + 1] == '\"')
-				break ;
-			j++;
-		}
-		if (q_start == -1)
+		strlen = px_strlen(b->arg[i]);
+		tmp_int = malloc(sizeof(int) * strlen);
+		line_to_changed(b->arg[i], tmp_int, b); //스플릿 다시 하려다 눈 빠질 것 같아서 잘린 arg를 다시 파싱했습니다
+		if (tmp_int[0] != 3 && tmp_int[0] != 4)
 		{
 			printf("quote deleted b->arg[%d] = %s\n", i, b->arg[i]);
 			i++;
 		}
 		else
 		{
-			tmp = ft_substr(b->arg[i], (q_start + 1), (j - q_start));
+			tmp = ft_substr(b->arg[i], 1, strlen - 2);
 			free(b->arg[i]);
 			b->arg[i] = tmp;
-			printf("quote deleted b->arg[%d] = %s\n", i, b->arg[i]);
+			printf("quote deleted b->arg[%d] = %s\n", i, (b->arg[i]));
 			i++;
 		}
 	}
@@ -210,7 +194,7 @@ void		check_arguments(t_all *a)
 	{
 		printf("\n->->-> split start point <-<-<-\n");
 		b->cmd = NULL; // 초기화를 여기서 하지 않고 init에서 하면 세그폴트가 남 왜??
-		b->arg = split_args(b->int_line_cut, b->line_cut, 2);
+		b->arg = split_args(b->int_line_cut, b->line_cut, 2);		
 		head = b->redir_list;
 		i = -1;
 		while (b->arg[++i])

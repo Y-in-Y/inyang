@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:09:50 by inyang            #+#    #+#             */
-/*   Updated: 2021/07/24 22:39:15 by inyang           ###   ########.fr       */
+/*   Updated: 2021/07/26 03:32:17 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,11 +38,13 @@ typedef	struct		s_all{
 	int				pipe_cnt;
 	char			*cmd;
 	char			**arg;
+	int				**int_arg;
 	int				echo_n_cnt;
 	t_list			*redir_list;
 	struct s_all	*next;
 }					t_all;
 
+void	line_to_changed(char *line, int *changed, t_all *a);
 char			**split_args(int *int_line, char *s, int c);
 int				px_gnl(char **line);
 int				px_strlen(char *s);
@@ -55,5 +57,8 @@ void		is_cmd_echo(t_all *a);
 void		is_there_env(t_all *a);
 void		is_there_quote(t_all *a);
 char		**split_args(int *int_line, char *s, int c);
+static size_t	ft_cnt(int *s, int c, int strlen);
+static int		ft_n_malloc(char **all, size_t k, size_t cnt);
+static size_t	ft_index(size_t i, int *s, int c, int strlen);
 void    rearrange_arg(t_all *a);
 #endif
