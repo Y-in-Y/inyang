@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:11:14 by inyang            #+#    #+#             */
-/*   Updated: 2021/07/24 22:52:00 by inyang           ###   ########.fr       */
+/*   Updated: 2021/07/26 01:11:13 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -247,18 +247,18 @@ int	main(int argc, char **argv, char **envp)
 	line = "echo \'$PWD is here\' and \"$PWD is here\" | cat << ";
 	parsing(line, &a);
 	// system("leaks a.out");
-	printf("**********************************\n");
-	printf("test4\n");
-	line = "< flag | << flag | > flag | >> flag";
-	parsing(line, &a);
+	// printf("**********************************\n");
+	// printf("test4\n");
+	// line = "< flag | << flag | > flag | >> flag";
+	// parsing(line, &a);
 	// printf("test5\n");
 	// line = "< main.c echo test";
 	// parsing(line, &a);
-	printf("test6\n");
-	line = "echo";
-	parsing(line, &a);
-	printf("test7\n");
-	line = "< in ecHo << cat -n -nnn -n a >> out";
-	parsing(line, &a);
+	// printf("test6\n");
+	// line = "echo $PWD $? where$PWD";
+	// parsing(line, &a);
+	// printf("test7\n");
+	// line = "< in ecHo << cat -n -nnn -n a >> out";
+	// parsing(line, &a);
 	return (0);
 }

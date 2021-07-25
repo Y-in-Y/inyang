@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 16:17:22 by inyang            #+#    #+#             */
-/*   Updated: 2021/07/24 22:53:56 by inyang           ###   ########.fr       */
+/*   Updated: 2021/07/26 01:52:37 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,32 +48,40 @@ void	is_there_quote(t_all *a)
 	t_all	*b;
 	char	*tmp;
 
-	printf(">>>>>hi there\n");
-	q_start = -1;
 	b = a;
 	i = 0;
 	while (b->arg[i])
 	{
+		q_start = -1;
 		j = 0;
 		while (b->arg[i][j])
 		{
-			printf("%d %c\n", i,b->arg[i][j]);
-			j++;
 			if (b->arg[i][j] == '\'' || b->arg[i][j] == '\"') // <<계속 체크하면서 싱글 더블 확인
 			{
 				q_start = j;
-				printf(">>>>>>>>> %d\n", q_start);
-				while (b->arg[i][j] == 42 || b->arg[i][j] == 47)
-					j++;
+				break ;
 			}
+			j++;
 		}
-		printf("%d, %d\n", j, q_start);
+		while (b->arg[i][j])
+		{
+			if (b->arg[i][j] == '\0')
+				printf("quote not closed\n");
+			if (b->arg[i][j + 1] == '\'' || b->arg[i][j + 1] == '\"')
+				break ;
+			j++;
+		}
 		if (q_start == -1)
+		{
+			printf("quote deleted b->arg[%d] = %s\n", i, b->arg[i]);
 			i++;
+		}
 		else
 		{
-			tmp = ft_substr(b->arg[i], q_start, (j - q_start));
-			printf("따옴표 잘린 버전 %s\n", tmp);
+			tmp = ft_substr(b->arg[i], (q_start + 1), (j - q_start));
+			free(b->arg[i]);
+			b->arg[i] = tmp;
+			printf("quote deleted b->arg[%d] = %s\n", i, b->arg[i]);
 			i++;
 		}
 	}
