@@ -6,11 +6,13 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:11:14 by inyang            #+#    #+#             */
-/*   Updated: 2021/07/26 02:20:29 by inyang           ###   ########.fr       */
+/*   Updated: 2021/07/30 05:07:48 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+t_env	*g_env_list;
 
 int	left_name(char *line, int *changed, int i, t_all *a)
 {
@@ -194,6 +196,7 @@ void	parsing(char *line, t_all *a)
 	int		i;
 	int		*changed;
 	int		length;
+	char	*new_line;
 
 	length = px_strlen(line);
 	changed = (int *)malloc(sizeof(int) * length);
@@ -201,12 +204,9 @@ void	parsing(char *line, t_all *a)
 	while (i < length)
 		changed[i++] = 1111111;
 	printf("%s\n", line);
-	// printf("%d\n", length);
 	struct_init(a);
 	line_to_changed(line, changed, a);
-	// printf("fin?\n");
 	i = 0;
-	// printf("%s\n", line);
 	while (line[i])
 	{
 		if (changed[i] == 1111111)
@@ -215,31 +215,49 @@ void	parsing(char *line, t_all *a)
 		i++;
 	}
 	printf("\n");
-	cutting_int_line(line, changed, a);
-	changed_line_cut(line, changed, a);
+	new_line = cutting_int_line(line, &changed, a);
+	changed_line_cut(new_line, changed, a);
+	printf(">>> cut here <<<");
 	check_arguments(a);
 	is_cmd_echo(a);
-	is_there_quote(a);
+	// is_there_quote(a);
 	// is_there_env(a);
 }
 
 int	main(int argc, char **argv, char **envp)
 {
 	char	*line;
+	t_env	*list;
 	t_all	a;
+	int		i;
 
 	if (argc != 1 || !argv || !envp)
 		return (0);
-//	struct_init(&a);
-	// printf("test1\n");
-	// line = "hello \"inyang\". I`m \'ylee\'. good bye~ $PWD";
-	// parsing(line);
+	i = 0;
+	g_env_list= envp_to_list(envp[0]);
+	g_env_list->origin = envp;
+	list = g_env_list;
+	i = 1;
+	while (envp && envp[i])
+	{
+		list->next = envp_to_list(envp[i]);
+		list = list->next;
+		i++;
+	}
+	printf("test value : %s\n", g_env_list->next->value);
+	/*
+	printf("***$?******$?******$?******$?*************\n");
+	printf("$??\n");
+	g_env_list->exit_code = 127;
+	line = "echo $? \'$PWD is $? here\' and \"$PWD is $? here\" | cat << $? | wc -l $?";
+	parsing(line, &a);
+	*/
 	printf("**********************************\n");
 	printf("test1\n");
 	line = "echo \'$PWD is here\' and \"$PWD is here\" | cat << ylee | wc -l";
 	parsing(line, &a);
 	printf("**********************************\n");
-	printf("test2\n");
+	printf("\n\n\n\ntest2\n");
 	line = "echo \'$PWD is here\' and \"$PWD is here\" | cat << ylee";
 	parsing(line, &a);
 	printf("**********************************\n");	
@@ -248,8 +266,8 @@ int	main(int argc, char **argv, char **envp)
 	parsing(line, &a);
 	// system("leaks a.out");
 	// printf("**********************************\n");
-	printf("test4\n");
-	line = "\"here is new example 'omg'\"";
+	printf("\n\n\n\n\ntest4\n");
+	line = "echo \"test1\" \"test2\"";
 	parsing(line, &a);
 	// printf("test5\n");
 	// line = "< main.c echo test";

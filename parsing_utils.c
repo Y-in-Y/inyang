@@ -6,13 +6,13 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 19:33:58 by inyang            #+#    #+#             */
-/*   Updated: 2021/07/08 16:17:39 by inyang           ###   ########.fr       */
+/*   Updated: 2021/07/30 05:04:56 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-char		*ft_strdup(const char *src)
+char		*ft_strdup(char *src)
 {
 	char	*result;
 	int		i;
@@ -46,14 +46,17 @@ void	changed_line_cut(char *line, int *changed, t_all *a)
 	{
 		j = 0;
 		strlen = px_strlen(b->line_cut);
+		// int x = -1;
+		// while (++x < strlen)
+		// 	printf("%d", changed[x]);
 		b->int_line_cut = malloc(sizeof(int) * strlen);
-		if (changed[i] == 8)
-			i += 1;
-		if (changed[i] == 2)
-			i += 1;
+		// if (changed[i] == 8)
+		// 	i += 1;
+		// if (changed[i] == 2)
+		// 	i += 1;
 		while (j < strlen)
 		{
-			b->int_line_cut[j] = changed[i];
+			b->int_line_cut[j] = changed[i]; //line <- {(int)line == changed}  
 			i++;
 			j++;
 		}
@@ -80,38 +83,119 @@ t_all	*make_next_page(void)
 	return (a);
 }
 
-void	cutting_int_line(char *line, int *changed, t_all *a)
+char	*env_to_str(char *line, int **changed)
+{
+	int		i;
+	int		j;
+	int		idx;
+	int		env_end_idx;
+	int		*tmp;
+	int		*new_int;
+	char	*new_line;
+	char	*tmp_s;
+	char	*env_value;
+	int		env_len;
+
+	new_line = ft_strdup(line);
+	i = 0;
+	while (new_line && new_line[i])
+	{
+		tmp = *changed;
+		if (tmp[i] != 5)
+			i++;
+		else if (tmp[i] == 5) //love.......
+		{
+			if (new_line[i] == '$' && new_line[i + 1] == '?')
+				tmp[i + 1] = 5;
+			j = i;
+			while (tmp[j] == 5)
+				j++;
+			env_value = find_env_value(&new_line[i + 1]);
+			printf("env value is %s\n", env_value);
+			env_len = px_strlen(env_value);
+			printf("env value is %s\n", env_value);
+			if (env_value)
+			{
+				new_line[i] = '\0';
+				tmp_s = px_strjoin(new_line, env_value); //newline[0] ~ newline[i - 1] + env_value
+				free(new_line);
+				new_line = px_strjoin(tmp_s, &(line[j])); // newline[0] ~ newline[i - 1] + env_value + newline[j] ~ end // newline[i] ~ newline[j - 1] 를 env_value 로 교체
+				free(tmp_s);
+				new_int = (int *)malloc(sizeof(int) * px_strlen(new_line));
+				idx = 0;
+				while (idx < i) // env 이전 int
+				{
+					new_int[idx] = tmp[idx];
+					idx++;
+				}
+				while (idx < i + env_len) // env 가 있는 부분
+				{
+					new_int[idx] = 1;
+					idx++;
+				}
+				i = idx;
+				while (idx < px_strlen(new_line)) // env 끝난부분
+				{
+					new_int[idx] = tmp[j];
+					j++;
+					idx++;
+				}
+				free(tmp);
+				*changed = new_int;
+			}
+			else // value 못찾으면 $있어도 단순출력처립ㅂ
+			{
+				while (tmp[i] == 5)
+				{
+					tmp[i] = 1;
+					i++; //hi >< 힛
+				}
+			}
+		}
+	}
+	return (new_line);
+}
+
+char	*cutting_int_line(char *line, int **i_int, t_all *a)
 {
 	int		strlen;
 	char	*line_dup;
 	t_all 	*b;
+	int		i;
+	int		j;
+	int		k;
+	int		env_len;
+	int		*changed;
+	char	*env_value;
+	char	*tmp;
+	char	*final;
 	
 	b = a;
-	line_dup = ft_strdup(line);
-	strlen = px_strlen(line);
-	printf("%s\n", line);
-	printf("dup %s\n", line_dup);
-	printf("%d\n", strlen);
-	int i = 0;
-	while (i < strlen)
-		printf("%d", changed[i++]);
-	printf("\n");
+	line_dup = env_to_str(line, i_int);
+	printf("sorega new line~~~~~ \n%s\n", line_dup);
+	strlen = px_strlen(line_dup);
 	i = 0;
-	int j = 0;
+	j = 0;
+	changed = *i_int;
 	while (i < strlen)
 	{
+		if (changed[i] == 3)
+			changed[i] = 2;
+		if (changed[i] == 4)
+			changed[i] = 2;
 		if (changed[i] == 8)
 		{
 			b->next = make_next_page();
 			a->pipe_cnt++;
 			line_dup[i] = '\0';
 			b->line_cut = ft_strdup(&line_dup[j]);
-			j = i + 2;
+			j = i + 1;
 			b = b->next;
 		}
 		printf("%d", changed[i]);
 		i++;
 	}
+	*i_int = changed;
 	if (b)
 		b->line_cut = ft_strdup(&line_dup[j]);
 	printf("\n\na->line_cut %s\n", a->line_cut);
@@ -120,13 +204,15 @@ void	cutting_int_line(char *line, int *changed, t_all *a)
 	if (a->next && a->next->next)
 		printf("a->next->line_cut %s\n", a->next->next->line_cut);
 	printf("\n\na->pipe_cnt %d\n", a->pipe_cnt);
-	free(line_dup);
+	return (line_dup);
 }
 
 int		px_strlen(char *s)
 {
 	int i;
 
+	if (!s)
+		return (0);
 	i = 0;
 	while (s[i])
 		i++;

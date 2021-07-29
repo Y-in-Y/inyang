@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:09:50 by inyang            #+#    #+#             */
-/*   Updated: 2021/07/26 03:32:17 by inyang           ###   ########.fr       */
+/*   Updated: 2021/07/30 04:47:28 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,10 @@
 
 typedef struct		s_env
 {
+	int				exit_code;
 	char			*name;
 	char			*value;
+	char			**origin;
 	struct s_env	*next;
 }					t_env;
 
@@ -38,19 +40,24 @@ typedef	struct		s_all{
 	int				pipe_cnt;
 	char			*cmd;
 	char			**arg;
-	int				**int_arg;
+	// int				*int_arg;
 	int				echo_n_cnt;
 	t_list			*redir_list;
 	struct s_all	*next;
 }					t_all;
 
+t_env	*envp_to_list(char *env);
 void	line_to_changed(char *line, int *changed, t_all *a);
 char			**split_args(int *int_line, char *s, int c);
 int				px_gnl(char **line);
 int				px_strlen(char *s);
-void			cutting_int_line(char *line, int *changed, t_all *a);
+char	*px_strjoin(char *s1, char *s2);
+int	ft_strncmp(char *dst, char *src, int size);
+char	*ft_itoa(int n);
+char	*find_env_value(char *name);
+char	*cutting_int_line(char *line, int **i_int, t_all *a);
 void			changed_line_cut(char *line, int *changed, t_all *a);
-char			*ft_strdup(const char *src);
+char			*ft_strdup(char *src);
 t_list	*make_next_flag_list(t_all *a);
 void		check_arguments(t_all *a);
 void		is_cmd_echo(t_all *a);

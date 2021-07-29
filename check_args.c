@@ -6,84 +6,11 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 16:17:22 by inyang            #+#    #+#             */
-/*   Updated: 2021/07/26 03:33:32 by inyang           ###   ########.fr       */
+/*   Updated: 2021/07/30 05:12:56 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
-
-char	*ft_substr(char *s, unsigned int start, size_t len)
-{
-	size_t		i;
-	size_t		s_len;
-	char		*str;
-
-	if (s == 0)
-		return (0);
-	s_len =	px_strlen(s);
-	if (start > s_len)
-	{
-		if (!(str = (char *)malloc(sizeof(char) * 1)))
-			return (0);
-		str[0] = '\0';
-		return (str);
-	}
-	if (!(str = (char *)malloc(sizeof(char) * (len + 1))))
-		return (0);
-	i = 0;
-	while (i < len)
-	{
-		str[i] = s[i + start];
-		i++;
-	}
-	str[i] = '\0';
-	return (str);
-}
-
-void	is_there_quote(t_all *a)
-{
-	int		i;
-	t_all	*b;
-	char	*tmp;
-	int		*tmp_int;
-	int		strlen;
-
-	b = a;
-	i = 0;
-	while (b->arg[i])
-	{
-		strlen = px_strlen(b->arg[i]);
-		tmp_int = malloc(sizeof(int) * strlen);
-		line_to_changed(b->arg[i], tmp_int, b); //스플릿 다시 하려다 눈 빠질 것 같아서 잘린 arg를 다시 파싱했습니다
-		if (tmp_int[0] != 3 && tmp_int[0] != 4)
-		{
-			printf("quote deleted b->arg[%d] = %s\n", i, b->arg[i]);
-			i++;
-		}
-		else
-		{
-			tmp = ft_substr(b->arg[i], 1, strlen - 2);
-			free(b->arg[i]);
-			b->arg[i] = tmp;
-			printf("quote deleted b->arg[%d] = %s\n", i, (b->arg[i]));
-			i++;
-		}
-	}
-}
-
-// void		is_there_env(t_all *a)
-// {
-// 	int		i;
-// 	t_all	*b;
-
-// 	b = a;
-// 	i = -1;
-// 	while (b->arg[++i])
-// 	{
-// 		if ((b->arg[i][0] == '$')
-// 		{
-			
-// }
 
 char		*change_arg(char *s1, char *s2)
 {
