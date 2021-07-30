@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:11:14 by inyang            #+#    #+#             */
-/*   Updated: 2021/07/30 05:07:48 by inyang           ###   ########.fr       */
+/*   Updated: 2021/07/31 00:51:11 by ylee             ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -236,6 +236,7 @@ int	main(int argc, char **argv, char **envp)
 	i = 0;
 	g_env_list= envp_to_list(envp[0]);
 	g_env_list->origin = envp;
+	g_env_list->exit_code = 0;
 	list = g_env_list;
 	i = 1;
 	while (envp && envp[i])
@@ -245,13 +246,12 @@ int	main(int argc, char **argv, char **envp)
 		i++;
 	}
 	printf("test value : %s\n", g_env_list->next->value);
-	/*
 	printf("***$?******$?******$?******$?*************\n");
 	printf("$??\n");
 	g_env_list->exit_code = 127;
 	line = "echo $? \'$PWD is $? here\' and \"$PWD is $? here\" | cat << $? | wc -l $?";
 	parsing(line, &a);
-	*/
+/*
 	printf("**********************************\n");
 	printf("test1\n");
 	line = "echo \'$PWD is here\' and \"$PWD is here\" | cat << ylee | wc -l";
@@ -278,5 +278,6 @@ int	main(int argc, char **argv, char **envp)
 	// printf("test7\n");
 	// line = "< in ecHo << cat -n -nnn -n a >> out";
 	// parsing(line, &a);
+*/
 	return (0);
 }

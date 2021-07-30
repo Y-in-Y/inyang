@@ -28,7 +28,12 @@ char	*find_env_value(char *name)
 	e_name = ft_strdup(name);
 	i = 0;
 	if (name[0] == '?')
-		return (ft_itoa(g_env_list->exit_code)); //need to edit
+	{
+		free(e_name);
+		e_name = ft_itoa(g_env_list->exit_code); //need to edit
+		printf("\n\n>>$? : %s<<\n\n", e_name);
+		return (e_name);
+	}
 	while (name[i])
 	{
 		if (ft_isalpha(name[i]) == 1 || ft_isdigit(name[i]) == 1 || name[i] == '_')
