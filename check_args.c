@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 16:17:22 by inyang            #+#    #+#             */
-/*   Updated: 2021/07/30 05:12:56 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/03 00:28:13 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,6 @@ int	px_strcmp(char *dst, char *src)
 void		is_cmd_echo(t_all *a)
 {
 	t_all	*b;
-	int		echo_here;
 	char	*tmp;
 	int		i;
 	int		j;

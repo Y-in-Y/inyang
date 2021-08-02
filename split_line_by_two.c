@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   split_int_line_by_two.c                            :+:      :+:    :+:   */
+/*   split_line_by_two.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 16:05:59 by inyang            #+#    #+#             */
-/*   Updated: 2021/07/26 02:30:21 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/03 03:29:20 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,10 @@ static size_t	ft_cnt(int *s, int c, int strlen)
 	return (cnt);
 }
 
-static int		ft_n_malloc(char **all, size_t k, size_t cnt)
+static int	ft_n_malloc(char **all, size_t k, size_t cnt)
 {
-	if (!(all[k] = malloc(sizeof(char) * (cnt + 1))))
+	all[k] = malloc(sizeof(char) * (cnt + 1));
+	if (!(all[k]))
 	{
 		while (k > 0)
 		{
@@ -63,7 +64,7 @@ static size_t	ft_index(size_t i, int *s, int c, int strlen)
 	return (cnt);
 }
 
-static int		ft_fill(int *int_line, char const *s, int c, char **all, int strlen)
+static int	ft_fill(int *int_line, char const *s, int c, char **all)
 {
 	size_t	i;
 	size_t	j;
@@ -73,16 +74,13 @@ static int		ft_fill(int *int_line, char const *s, int c, char **all, int strlen)
 
 	i = 0;
 	k = 0;
-	/* 무슨 문장 들어왔나 체크용 */
-	printf("command line : %s\n",s);
-	/* 여기까지 */
-	while ((int)i < strlen)
+	while ((int)i < px_strlen(s))
 	{
-		while ((int)i < strlen && int_line[i] == c)
+		while ((int)i < px_strlen(s) && int_line[i] == c)
 			i++;
-		if (i >= strlen)
+		if (i >= px_strlen(s))
 			break ;
-		cnt = ft_index(i, int_line, c, strlen);
+		cnt = ft_index(i, int_line, c, px_strlen(s));
 		i += cnt;
 		if (ft_n_malloc(all, k, cnt))
 			return (1);
@@ -95,20 +93,20 @@ static int		ft_fill(int *int_line, char const *s, int c, char **all, int strlen)
 	return (0);
 }
 
-char			**split_args(int *int_line, char *s, int c)
+char	**split_args(int *int_line, char *s, int c)
 {
 	size_t	len;
 	char	**all;
 	int		strlen;
-	int		check;
 
 	if (!s)
 		return (NULL);
 	strlen = px_strlen(s);
 	len = ft_cnt(int_line, c, strlen);
-	if (!(all = malloc(sizeof(char *) * (len + 1))))
+	all = malloc(sizeof(char *) * (len + 1));
+	if (!(all))
 		return (NULL);
-	if ((check = ft_fill(int_line, s, c, all, strlen)) != 0)
+	if (ft_fill(int_line, s, c, all) != 0)
 		return (NULL);
 	all[len] = NULL;
 	return (all);
