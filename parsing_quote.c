@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 01:04:54 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/03 01:05:23 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/03 22:41:59 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,4 +53,3 @@ int	d_quote(char *line, int *changed, int i)
 		printf("syntax error\n");
 	return (i);
 }
-

@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 01:46:42 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/03 01:47:14 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/03 23:21:24 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,6 @@ void	changed_line_cut(char *line, int *changed, t_all *a)
 			i++;
 			j++;
 		}
-		printf(">>>>>>>>>>line in page %s\n>>>>>>int line in page ", b->line_cut);
-		int k = 0;
-		while (k < strlen)
-			printf("%d", b->int_line_cut[k++]);
-		printf("\n");
 		i++;
 		b = b->next;
 	}

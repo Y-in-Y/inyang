@@ -8,15 +8,14 @@ NAME = minishell
 
 SRCS = check_args.c\
 	   envp_to_list.c\
-	   ft_itoa.c\
 	   find_env_value.c\
-	   ft_strncmp.c\
 	   parsing.c\
 	   parsing_redir.c\
 	   parsing_quote.c\
 	   parsing_env.c\
 	   parsing_init.c\
 	   parsing_utils.c\
+	   parsing_utils_2.c\
 	   cutting_line.c\
 	   env_to_str.c\
 	   rearrange_args.c\

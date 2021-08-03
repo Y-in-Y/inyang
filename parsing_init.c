@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 01:14:44 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/03 01:55:51 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/03 22:42:11 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_all	*make_next_page(void)
 {
-	t_all *a;
+	t_all	*a;
 
 	a = (t_all *)malloc(sizeof(t_all));
 	a->redir_list = (t_list *)malloc(sizeof(t_list));

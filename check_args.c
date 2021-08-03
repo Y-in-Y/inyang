@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 16:17:22 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/03 00:28:13 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/03 23:21:12 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,6 @@ char		*change_arg(char *s1, char *s2)
 	char	*buf;
 	
 	buf = malloc(sizeof(char) * (px_strlen(s2) + 1));
-	printf("char s2 %s\n", s2);
 	i = 0;
 	while (s2[i])
 	{
@@ -27,25 +26,6 @@ char		*change_arg(char *s1, char *s2)
 	}
 	buf[i] = '\0';
 	return (buf);
-}
-
-int	px_strcmp(char *dst, char *src)
-{
-	int		i;
-
-	if (!dst || !src)
-		return (-1);
-	i = 0;
-	while (dst[i])
-	{
-		if (dst[i] == src[i])
-			i++;
-		else
-			return (0);
-	}
-	if (src[i] != '\0')
-		return (0);
-	return (1);
 }
 
 void		is_cmd_echo(t_all *a)

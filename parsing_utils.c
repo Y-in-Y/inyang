@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/02 19:33:58 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/03 01:49:44 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/03 22:41:12 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	ft_isdigit(char c)
 		return (0);
 }
 
-char		*ft_strdup(char *src)
+char	*ft_strdup(char *src)
 {
 	char	*result;
 	int		i;
@@ -49,9 +49,9 @@ char		*ft_strdup(char *src)
 	return (result);
 }
 
-int		px_strlen(char *s)
+int	px_strlen(char *s)
 {
-	int i;
+	int	i;
 
 	if (!s)
 		return (0);
@@ -66,7 +66,8 @@ char	*px_strjoin(char *s1, char *s2)
 	int		i;
 	char	*buf;
 
-	if (!(buf = malloc(sizeof(char) * (px_strlen(s1) + px_strlen(s2) + 1))))
+	buf = malloc(sizeof(char) * (px_strlen(s1) + px_strlen(s2) + 1));
+	if (!buf)
 		return (NULL);
 	i = 0;
 	while (*s1)
@@ -76,4 +77,3 @@ char	*px_strjoin(char *s1, char *s2)
 	buf[i] = '\0';
 	return (buf);
 }
-
