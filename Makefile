@@ -19,7 +19,8 @@ SRCS = check_args.c\
 	   cutting_line.c\
 	   env_to_str.c\
 	   rearrange_args.c\
-	   split_line_by_two.c
+	   split_line_by_two.c\
+	   check_cmd_echo.c\
 
 all : $(NAME)
 

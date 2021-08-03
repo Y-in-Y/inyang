@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:09:50 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/03 23:15:53 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/04 01:56:38 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,13 @@ char			*is_question(char *name);
 char			*env_name_check(char *name);
 //check_args.c
 void			check_arguments(t_all *a);
+//check_cmd_echo.c
 void			is_cmd_echo(t_all *a);
+int				compare_cmd_echo(t_all *a, int i);
+void			if_cmd_lower_echo(t_all *a, int i);
+int				check_serial_n_option(t_all *a, int i, int k);
+char			*change_arg(char *s1, char *s2);
+//
 void			is_there_env(t_all *a);
 void			is_there_quote(t_all *a);
 char			**split_args(int *int_line, char *s, int c);
