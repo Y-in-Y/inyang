@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:09:50 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/04 01:56:38 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/06 01:18:00 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,10 +64,13 @@ int				left_name(char *line, int *changed, int i, t_all *a);
 void			struct_init(t_all *a);
 t_list			*make_next_flag_list(t_all *a);
 t_all			*make_next_page(void);
+void			make_new_flag_list(t_all *b);
 //env_to_str.c
 char			*env_to_str(char *line, int **changed);
 //cutting_line.c
 char			*cutting_int_line(char *line, int **i_int, t_all *a);
+int				init_int_val(char *line_dup, int *idx);
+int				split_by_pipe(t_all *b, t_all *a, int *idx, char *line_dup);
 void			changed_line_cut(char *line, int *changed, t_all *a);
 //split_line_by_two.c
 char			**split_args(int *int_line, char *s, int c);
@@ -81,24 +84,29 @@ int				ft_isalpha(char c);
 int				ft_strncmp(char *dst, char *src, int size);
 int				px_strcmp(char *dst, char *src);
 char			*ft_itoa(int n);
+long long		make_num_plus(int n);
 //find_env_value.c
 char			*find_env_value(char *name);
 char			*is_question(char *name);
 char			*env_name_check(char *name);
 //check_args.c
 void			check_arguments(t_all *a);
+void			put_cmd_and_redir_flag(t_all *b, int i);
+int				redir_flag_r(t_all *b, int i, int j);
+int				redir_flag_l(t_all *b, int i, int j);
+void			put_cmd_in_struct(t_all *b, int i);
 //check_cmd_echo.c
 void			is_cmd_echo(t_all *a);
 int				compare_cmd_echo(t_all *a, int i);
 void			if_cmd_lower_echo(t_all *a, int i);
 int				check_serial_n_option(t_all *a, int i, int k);
 char			*change_arg(char *s1, char *s2);
-//
-void			is_there_env(t_all *a);
-void			is_there_quote(t_all *a);
+//split_line_by_two.c
 char			**split_args(int *int_line, char *s, int c);
+static int		ft_fill(int *int_line, char const *s, int c, char **all);
 static size_t	ft_cnt(int *s, int c, int strlen);
 static int		ft_n_malloc(char **all, size_t k, size_t cnt);
 static size_t	ft_index(size_t i, int *s, int c, int strlen);
+//rearrange_args.c
 void			rearrange_arg(t_all *a);
 #endif

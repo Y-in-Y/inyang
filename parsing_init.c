@@ -6,11 +6,17 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 01:14:44 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/03 22:42:11 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/04 17:17:34 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
+
+void	make_new_flag_list(t_all *b)
+{
+	b->redir_list->next = make_next_flag_list(b);
+	b->redir_list = b->redir_list->next;
+}
 
 t_all	*make_next_page(void)
 {
