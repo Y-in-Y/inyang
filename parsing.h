@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:09:50 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/06 01:18:00 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/07 03:06:13 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+// # include "minishell.h"
 
 typedef struct s_env
 {
@@ -29,6 +30,7 @@ typedef struct s_env
 
 typedef struct s_list// 아무것도 없으면 0 / < 1 / > 2 / << 3 / >> 4
 {
+	int				pipe_idx;
 	int				redir_flag;
 	char			*file;
 	struct s_list	*next;
@@ -109,4 +111,5 @@ static int		ft_n_malloc(char **all, size_t k, size_t cnt);
 static size_t	ft_index(size_t i, int *s, int c, int strlen);
 //rearrange_args.c
 void			rearrange_arg(t_all *a);
+int				count_args(t_all *a);
 #endif
