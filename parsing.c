@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:11:14 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/04 17:07:21 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/09 00:31:08 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,16 @@ void	parsing(char *line, t_all *a)
 	while (line[i])
 	{
 		if (changed[i] == 1111111)
+		{
+			printf("line to change error\n");
 			return ;
+		}
 		i++;
 	}
 	new_line = cutting_int_line(line, &changed, a);
 	changed_line_cut(new_line, changed, a);
 	check_arguments(a);
+	printf("in parging_after check arguments\n");
 	is_cmd_echo(a);
 }
 
@@ -100,7 +104,7 @@ int	main(int argc, char **argv, char **envp)
 	parsing(line, &a);
 	printf("**********************************\n");
 	printf("test1\n");
-	line = "echo -nnnnnn hi";
+	line = "echo -n hi";
 	parsing(line, &a);
 	printf("test7\n");
 	line = "< in | ecHo << cat | echo -n -nnn -n a >> out << in | eCHO -nnnnnnn";

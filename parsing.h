@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:09:50 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/07 03:06:13 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/09 00:38:13 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,11 +17,13 @@
 # include <stdio.h>
 # include <stdlib.h>
 # include <fcntl.h>
+# include <term.h>
 // # include "minishell.h"
 
 typedef struct s_env
 {
 	int				exit_code;
+	struct termios	backup;
 	char			*name;
 	char			*value;
 	char			**origin;
@@ -99,9 +101,9 @@ int				redir_flag_l(t_all *b, int i, int j);
 void			put_cmd_in_struct(t_all *b, int i);
 //check_cmd_echo.c
 void			is_cmd_echo(t_all *a);
-int				compare_cmd_echo(t_all *a, int i);
-void			if_cmd_lower_echo(t_all *a, int i);
-int				check_serial_n_option(t_all *a, int i, int k);
+int				compare_cmd_echo(t_all *b, int i);
+void			if_cmd_lower_echo(t_all *b, int i);
+int				check_serial_n_option(t_all *b, int i, int k);
 char			*change_arg(char *s1, char *s2);
 //split_line_by_two.c
 char			**split_args(int *int_line, char *s, int c);
