@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 01:42:27 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/09 00:55:27 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/09 01:01:55 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -118,7 +118,7 @@ char	*env_to_str(char *line, int **changed)
 			while (new_line[i[1]] && tmp[i[1]] == 5)
 				i[1]++;
 			env_value = find_env_value(&new_line[i[0] + 1]);
-			*changed = return_changed_line(i, env_value, &new_line, tmp);
+			*changed = return_final_line(i, env_value, &new_line, tmp);
 		}
 	}
 	return (new_line);
