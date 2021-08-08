@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:09:50 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/09 00:38:13 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/09 00:57:01 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,6 +71,10 @@ t_all			*make_next_page(void);
 void			make_new_flag_list(t_all *b);
 //env_to_str.c
 char			*env_to_str(char *line, int **changed);
+void			find_dollar_question(char *new_line, int **changed);
+int				*return_final_line(int *i, char *env_value, char **tmp_str, int *tmp);
+char			*insert_env_value(int *i, char *new_line, char *env_value, int env_len);
+int				*change_env_name_to_value(int *i, char *new_line, int env_len, int *tmp);
 //cutting_line.c
 char			*cutting_int_line(char *line, int **i_int, t_all *a);
 int				init_int_val(char *line_dup, int *idx);

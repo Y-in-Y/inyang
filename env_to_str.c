@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 01:42:27 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/09 00:13:44 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/09 00:55:27 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,7 @@ void	find_dollar_question(char *new_line, int **changed)
 	*changed = tmp;
 }
 
-int	*imsi_func(int *i, char *env_value, char **tmp_str, int *tmp)
+int	*return_final_line(int *i, char *env_value, char **tmp_str, int *tmp)
 {
 	int		*new_int;
 	int		env_len;
@@ -118,7 +118,7 @@ char	*env_to_str(char *line, int **changed)
 			while (new_line[i[1]] && tmp[i[1]] == 5)
 				i[1]++;
 			env_value = find_env_value(&new_line[i[0] + 1]);
-			*changed = imsi_func(i, env_value, &new_line, tmp);
+			*changed = return_changed_line(i, env_value, &new_line, tmp);
 		}
 	}
 	return (new_line);
