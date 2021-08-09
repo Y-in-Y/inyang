@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 01:04:46 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/03 01:05:47 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/10 00:56:52 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 int	env_name(char *line, int *changed, int i)
 {
 	changed[i] = 5;
-	while (line[++i])
+	while (line[i++])
 	{
 		if ((line[i] >= 'A' && line[i] <= 'Z') || \
 		(line[i] >= 'a' && line[i] <= 'z') || \

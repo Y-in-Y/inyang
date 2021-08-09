@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:11:14 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/10 00:32:11 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/10 00:52:43 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	line_to_changed(char *line, int *changed)
 	int		i;
 
 	i = 0;
+	printf("line in %s\n", line);
 	while (line[i])
 	{
 		if ((line[i] >= 'a' && line[i] <= 'z') || \
@@ -73,6 +74,15 @@ void	parsing(char *line, t_all *a)
 	check_arguments(a);
 	printf("in parging_after check arguments\n");
 	is_cmd_echo(a);
+	t_all *b;
+	b = a;
+	while (b)
+	{
+		int i = -1;
+		while (b->arg[++i])
+			printf("this is final %s\n", b->arg[i]);
+		b = b->next;
+	}
 }
 
 int	main(int argc, char **argv, char **envp)
@@ -107,7 +117,7 @@ int	main(int argc, char **argv, char **envp)
 	line = "echo -n hi";
 	parsing(line, &a);
 	printf("test7\n");
-	line = "echo $PWD $USER";
+	line = "echo \"$? $USER $PWD\"";
 	parsing(line, &a);
 /*
 	printf("**********************************\n");

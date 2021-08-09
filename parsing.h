@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:09:50 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/10 00:35:56 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/10 01:06:05 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,9 +78,11 @@ size_t			ft_index(size_t i, int *s, int c, int strlen);
 //env_to_str.c
 char			*env_to_str(char *line, int **changed);
 void			find_dollar_question(char *new_line, int **changed);
-int				*return_final_line(int *i, char *env_value, char **tmp_str, int *tmp);
+int				*return_final_line(int *i, char *env_value, \
+				char **tmp_str, int *tmp);
 char			*insert_env_value(int *i, char *new_line, char *env_value);
-int				*change_env_name_to_value(int *i, char *new_line, int env_len, int *tmp);
+int				*change_env_name_to_value(int *i, char *new_line, \
+				int env_len, int *tmp);
 //cutting_line.c
 char			*cutting_int_line(char *line, int **i_int, t_all *a);
 int				init_int_val(char *line_dup, int *idx);

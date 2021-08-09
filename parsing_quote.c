@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 01:04:54 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/03 22:41:59 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/10 01:04:56 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int	s_quote(char *line, int *changed, int i)
 		}
 	}
 	if (!line[i] && changed[i - 1] != 4)
-		printf("syntax error\n");
+		printf("single syntax error\n");
 	return (i);
 }
 
@@ -39,6 +39,11 @@ int	d_quote(char *line, int *changed, int i)
 	{
 		if (line[i] == '$')
 			i = env_name(line, changed, i);
+		else if (line[i] == '\"')
+		{
+			changed[i] = 3;
+			break ;
+		}
 		else if (line[i + 1] != '\"')
 			changed[i] = 1;
 		else if (line[i + 1] == '\"')
@@ -48,8 +53,9 @@ int	d_quote(char *line, int *changed, int i)
 			i++;
 			break ;
 		}
+		printf("where is problem\n");
 	}
 	if (!line[i] && changed[i - 1] != 3)
-		printf("syntax error\n");
+		printf("double syntax error\n");
 	return (i);
 }
