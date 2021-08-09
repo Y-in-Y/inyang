@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:09:50 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/09 14:38:42 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/10 00:35:56 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,10 +71,10 @@ t_all			*make_next_page(void);
 void			make_new_flag_list(t_all *b);
 //split_line_by_two.c
 char			**split_args(int *int_line, char *s, int c);
-static int		ft_fill(int *int_line, char const *s, int c, char **all);
-static size_t	ft_cnt(int *s, int c, int strlen);
-static int		ft_n_malloc(char **all, size_t k, size_t cnt);
-static size_t	ft_index(size_t i, int *s, int c, int strlen);
+int				ft_fill(int *int_line, char const *s, int c, char **all);
+size_t			ft_cnt(int *s, int c, int strlen);
+int				ft_n_malloc(char **all, size_t k, size_t cnt);
+size_t			ft_index(size_t i, int *s, int c, int strlen);
 //env_to_str.c
 char			*env_to_str(char *line, int **changed);
 void			find_dollar_question(char *new_line, int **changed);
