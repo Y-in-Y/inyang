@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 16:17:22 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/09 00:52:18 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/09 14:26:50 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,6 @@ void	put_cmd_and_redir_flag(t_all *b, int i)
 void	check_arguments(t_all *a)
 {
 	int		i;
-	int		j;
 	t_all	*b;
 	t_list	*head;
 

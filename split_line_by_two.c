@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 16:05:59 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/09 00:17:51 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/09 14:34:00 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,7 @@ static int	ft_fill(int *int_line, char const *s, int c, char **all)
 	{
 		while ((int)i < px_strlen((char *)s) && int_line[i] == c)
 			i++;
-		if (i >= px_strlen((char *)s))
+		if (i >= (size_t)px_strlen((char *)s))
 			break ;
 		cnt = ft_index(i, int_line, c, px_strlen((char *)s));
 		i += cnt;

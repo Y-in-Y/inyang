@@ -6,13 +6,13 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 01:02:36 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/03 01:03:24 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/09 14:37:11 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-int	left_name(char *line, int *changed, int i, t_all *a)
+int	left_name(char *line, int *changed, int i)
 {
 	if (line[i + 1] == ' ')
 	{
@@ -37,7 +37,7 @@ int	left_name(char *line, int *changed, int i, t_all *a)
 	return (i);
 }
 
-int	right_name(char *line, int *changed, int i, t_all *a)
+int	right_name(char *line, int *changed, int i)
 {
 	if (line[i + 1] == ' ')
 	{
@@ -62,17 +62,17 @@ int	right_name(char *line, int *changed, int i, t_all *a)
 	return (i);
 }
 
-int	redir_name(char *line, int *changed, int i, t_all *a)
+int	redir_name(char *line, int *changed, int i)
 {
 	if (line[i] == '<')
 	{
 		changed[i] = 6;
-		i = left_name(line, changed, i, a);
+		i = left_name(line, changed, i);
 	}
 	else if (line[i] == '>')
 	{
 		changed[i] = 7;
-		i = right_name(line, changed, i, a);
+		i = right_name(line, changed, i);
 	}
 	if (i < 0)
 		printf("syntax error\n");

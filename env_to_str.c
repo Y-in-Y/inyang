@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 01:42:27 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/09 01:01:55 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/09 14:29:38 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ int	*change_env_name_to_value(int *i, char *new_line, int env_len, int *tmp)
 	return (new_int);
 }
 
-char	*insert_env_value(int *i, char *new_line, char *env_value, int env_len)
+char	*insert_env_value(int *i, char *new_line, char *env_value)
 {
 	char	*tmp_s;
 	char	*l_tmp_s;
@@ -80,7 +80,7 @@ int	*return_final_line(int *i, char *env_value, char **tmp_str, int *tmp)
 	env_len = px_strlen(env_value);
 	if (env_value)
 	{
-		new_line = insert_env_value(i, new_line, env_value, env_len);
+		new_line = insert_env_value(i, new_line, env_value);
 		new_int = change_env_name_to_value(i, new_line, env_len, tmp);
 		*tmp_str = new_line;
 		free(tmp);

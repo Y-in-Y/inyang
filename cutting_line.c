@@ -6,13 +6,13 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 01:46:42 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/06 01:13:18 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/09 14:32:28 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-void	changed_line_cut(char *line, int *changed, t_all *a)
+void	changed_line_cut(int *changed, t_all *a)
 {
 	t_all	*b;
 	int		strlen;

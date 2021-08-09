@@ -6,13 +6,13 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 01:21:15 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/09 00:52:35 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/09 14:36:02 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "parsing.h"
 
-char	*change_arg(char *s1, char *s2)
+char	*change_arg(char *s2)
 {
 	int		i;
 	char	*buf;
@@ -55,7 +55,7 @@ void	if_cmd_lower_echo(t_all *b, int i)
 		j = check_serial_n_option(b, i, k);
 		if (j == px_strlen(b->arg[i + k]))
 		{
-			tmp = change_arg(b->arg[i + k], "-n");
+			tmp = change_arg("-n");
 			free(b->arg[i + k]);
 			b->arg[i + k] = tmp;
 		}

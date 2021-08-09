@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:09:50 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/09 00:57:01 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/09 14:38:42 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,32 +54,38 @@ typedef struct s_all
 t_env			*envp_to_list(char *env);
 //parsing.c
 void			parsing(char *line, t_all *a);
-void			line_to_changed(char *line, int *changed, t_all *a);
+void			line_to_changed(char *line, int *changed);
 //parsing_env.c
 int				env_name(char *line, int *changed, int i);
 //parsing_quote.c
 int				s_quote(char *line, int *changed, int i);
 int				d_quote(char *line, int *changed, int i);
 //parsing_redir.c
-int				redir_name(char *line, int *changed, int i, t_all *a);
-int				right_name(char *line, int *changed, int i, t_all *a);
-int				left_name(char *line, int *changed, int i, t_all *a);
+int				redir_name(char *line, int *changed, int i);
+int				right_name(char *line, int *changed, int i);
+int				left_name(char *line, int *changed, int i);
 //parsing_init.c
 void			struct_init(t_all *a);
-t_list			*make_next_flag_list(t_all *a);
+t_list			*make_next_flag_list(void);
 t_all			*make_next_page(void);
 void			make_new_flag_list(t_all *b);
+//split_line_by_two.c
+char			**split_args(int *int_line, char *s, int c);
+static int		ft_fill(int *int_line, char const *s, int c, char **all);
+static size_t	ft_cnt(int *s, int c, int strlen);
+static int		ft_n_malloc(char **all, size_t k, size_t cnt);
+static size_t	ft_index(size_t i, int *s, int c, int strlen);
 //env_to_str.c
 char			*env_to_str(char *line, int **changed);
 void			find_dollar_question(char *new_line, int **changed);
 int				*return_final_line(int *i, char *env_value, char **tmp_str, int *tmp);
-char			*insert_env_value(int *i, char *new_line, char *env_value, int env_len);
+char			*insert_env_value(int *i, char *new_line, char *env_value);
 int				*change_env_name_to_value(int *i, char *new_line, int env_len, int *tmp);
 //cutting_line.c
 char			*cutting_int_line(char *line, int **i_int, t_all *a);
 int				init_int_val(char *line_dup, int *idx);
 int				split_by_pipe(t_all *b, t_all *a, int *idx, char *line_dup);
-void			changed_line_cut(char *line, int *changed, t_all *a);
+void			changed_line_cut(int *changed, t_all *a);
 //split_line_by_two.c
 char			**split_args(int *int_line, char *s, int c);
 //parsing_utils.c
@@ -108,13 +114,7 @@ void			is_cmd_echo(t_all *a);
 int				compare_cmd_echo(t_all *b, int i);
 void			if_cmd_lower_echo(t_all *b, int i);
 int				check_serial_n_option(t_all *b, int i, int k);
-char			*change_arg(char *s1, char *s2);
-//split_line_by_two.c
-char			**split_args(int *int_line, char *s, int c);
-static int		ft_fill(int *int_line, char const *s, int c, char **all);
-static size_t	ft_cnt(int *s, int c, int strlen);
-static int		ft_n_malloc(char **all, size_t k, size_t cnt);
-static size_t	ft_index(size_t i, int *s, int c, int strlen);
+char			*change_arg(char *s2);
 //rearrange_args.c
 void			rearrange_arg(t_all *a);
 int				count_args(t_all *a);
