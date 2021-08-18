@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 01:21:15 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/09 14:36:02 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/18 17:48:28 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,6 @@ void	is_cmd_echo(t_all *a)
 	int		i;
 
 	b = a;
-	printf("is_cmd_echo start\n");
 	while (b)
 	{
 		if (b->cmd)
@@ -92,21 +91,18 @@ void	is_cmd_echo(t_all *a)
 			tmp = b->arg[1];
 			b->echo_n_cnt = 0;
 			i = -1;
-			printf("is_cmd_echo start while\n");
 			while (b->arg[++i])
 			{
 				if (compare_cmd_echo(b, i) == 1)
 				{
-					if (px_strcmp(b->cmd, "echo")) // 소문자로만 echo 인 경우
+					if (px_strcmp(b->cmd, "echo"))
 						if_cmd_lower_echo(b, i);
-					else //ㄷㅐ소문자 섞인경우
+					else
 					{
 						if (b->arg[i + 1] && px_strcmp(b->arg[i + 1], "-n"))
 							b->echo_n_cnt = 1;
 					}
-					printf(" -n cnt %d\n", b->echo_n_cnt); //지우기
 				}
-				printf("new b->arg[%d] = %s\n", i, b->arg[i]); //지우기
 			}
 		}
 		b = b->next;

@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 02:01:30 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/03 03:12:38 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/18 17:44:24 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,6 @@ char	*find_env_value(char *name)
 	free(e_name);
 	if (env)
 		return (env->value);
-	return (0);
+	else
+		return (ft_strdup(""));
 }

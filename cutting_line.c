@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/03 01:46:42 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/09 14:32:28 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/18 17:49:19 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,11 +88,5 @@ char	*cutting_int_line(char *line, int **i_int, t_all *a)
 	*i_int = changed;
 	if (b)
 		b->line_cut = ft_strdup(&line_dup[idx[1]]);
-	// printf("\n\na->line_cut %s\n", a->line_cut);
-	// if (a->next)
-	// 	printf("a->next->line_cut %s\n", a->next->line_cut);
-	// if (a->next && a->next->next)
-	// 	printf("a->next->line_cut %s\n", a->next->next->line_cut);
-	// printf("\n\na->pipe_cnt %d\n", a->pipe_cnt);
 	return (line_dup);
 }

@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/24 22:37:53 by ylee              #+#    #+#             */
-/*   Updated: 2021/08/06 01:32:12 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/18 17:46:37 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,11 +53,4 @@ void	rearrange_arg(t_all *a)
 	free(a->arg[i]);
 	free(a->arg);
 	a->arg = new;
-	//이 밑으로 자르기
-	i = 0;
-	while (a->arg && a->arg[i])
-	{
-		printf("new a->arg[%d] : %s\n", i, a->arg[i]);
-		i++;
-	}
 }

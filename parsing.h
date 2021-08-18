@@ -6,11 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:09:50 by inyang            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2021/08/10 01:06:05 by inyang           ###   ########.fr       */
-=======
-/*   Updated: 2021/08/10 00:38:42 by ylee             ###   ########.fr       */
->>>>>>> e9c607f88b1f671375113f9cea95a4b374643f27
+/*   Updated: 2021/08/19 00:37:29 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,7 +56,7 @@ typedef struct s_all
 t_env			*envp_to_list(char *env);
 //parsing.c
 void			parsing(char *line, t_all *a);
-void			line_to_changed(char *line, int *changed);
+int				line_to_changed(char *line, int *changed);
 //parsing_env.c
 int				env_name(char *line, int *changed, int i);
 //parsing_quote.c
@@ -126,4 +122,7 @@ char			*change_arg(char *s2);
 //rearrange_args.c
 void			rearrange_arg(t_all *a);
 int				count_args(t_all *a);
+void			print_nyan(void);
+void			print_nyan_4(void);
+
 #endif
