@@ -21,6 +21,7 @@ SRCS = check_args.c\
 	   rearrange_args.c\
 	   split_line_by_two.c\
 	   check_cmd_echo.c\
+	   check_cmd_echo_2.c\
 	   print_nyan.c\
 	   print_nyan_2.c
 

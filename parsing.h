@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:09:50 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/19 00:37:29 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/19 01:10:12 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,6 +119,8 @@ int				compare_cmd_echo(t_all *b, int i);
 void			if_cmd_lower_echo(t_all *b, int i);
 int				check_serial_n_option(t_all *b, int i, int k);
 char			*change_arg(char *s2);
+//check_cmd_echo_2.c
+void			is_there_n_option(t_all *b, int i);
 //rearrange_args.c
 void			rearrange_arg(t_all *a);
 int				count_args(t_all *a);

@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/08 16:17:22 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/09 14:26:50 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/19 01:09:02 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,23 +85,6 @@ void	check_arguments(t_all *a)
 		while (b->arg[++i])
 			put_cmd_and_redir_flag(b, i);
 		b->redir_list = head;
-		/* 잘 들어갔나 체크용 */
-		printf("********* result *********\n");
-		printf("b->cmd = |%s|\n", b->cmd);
-		int k = 0;
-		while (b->arg[k])
-		{
-			printf("arg[%d] %s\n", k, b->arg[k]);
-			// printf("%d %s\n",b->redir_list->redir_flag, b->redir_list->file);
-			while (b->redir_list)
-			{
-				printf("%d %s\n",b->redir_list->redir_flag, b->redir_list->file);
-				b->redir_list = b->redir_list->next;
-			}
-			k++;
-		}
-		b->redir_list = head;
-		/* 여기까지 지우기 */
 		rearrange_arg(b);
 		b = b->next;
 	}

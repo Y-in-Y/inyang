@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/08/04 01:21:15 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/18 17:48:28 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/19 01:09:33 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,10 +98,7 @@ void	is_cmd_echo(t_all *a)
 					if (px_strcmp(b->cmd, "echo"))
 						if_cmd_lower_echo(b, i);
 					else
-					{
-						if (b->arg[i + 1] && px_strcmp(b->arg[i + 1], "-n"))
-							b->echo_n_cnt = 1;
-					}
+						is_there_n_option(b, i);
 				}
 			}
 		}

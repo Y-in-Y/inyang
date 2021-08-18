@@ -6,7 +6,7 @@
 /*   By: inyang <inyang@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/01 16:11:14 by inyang            #+#    #+#             */
-/*   Updated: 2021/08/19 00:44:44 by inyang           ###   ########.fr       */
+/*   Updated: 2021/08/19 01:12:25 by inyang           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,7 +98,7 @@ int	main(int argc, char **argv, char **envp)
 	printf("***$?******$?******$?******$?*************\n");
 	printf("$??\n");
 	g_env_list->exit_code = 127;
-	line = "echo $? \'$PWD is $? here and \"$PWD is $? here\" | cat << $? | wc -l $?";
+	line = "echo $? \'$PWD is $? here\' and \"$PWD is $? here\" | cat << $? | wc -l $?";
 	parsing(line, &a);
 	printf("**********************************\n");
 	printf("test1\n");
